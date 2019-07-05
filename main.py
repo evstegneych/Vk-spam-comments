@@ -1,13 +1,23 @@
-import vk_api, Logger, time
+import vk_api, Logger, time, re
 from threading import Thread
 from config import config
 
+url = input('Введите ссылку на пост!')
+link = re.search(r'wall\d+_\d+', url)
+if link is None:
+    Logger.Rlog('Ссылка инвалидная!')
+    exit(0)
+else:
+    post = link.group(0).replace('wall', '').replace('_', ' ').split()
+print(post)
+
 def core(name, api):
+    global post
     Logger.Ylog(f'Группа №{name} запущена')
     i = 1
     while True:
         try:
-            api.wall.createComment(owner_id='242175861', post_id='1690',
+            api.wall.createComment(owner_id=post[0], post_id=post[1],
                                    message="&#4448;")
             Logger.Pulselog(f'Группа №{name} оставила коммент ({i})')
             i += 1
@@ -16,6 +26,10 @@ def core(name, api):
             Logger.Rlog(f'Произошел сбой в {name}\n'
                         f'{s.__class__} {s}')
             time.sleep(60)
+        except vk_api.exceptions.ApiError:
+            Logger.Plog(f'Произошел сбой в {name}\n'
+                        f'{s.__class__} {s}')
+            break
     Logger.Rlog(f'Группа №{name} закончила свою работу')
 
 def main():
