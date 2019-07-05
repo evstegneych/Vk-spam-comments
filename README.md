@@ -16,3 +16,6 @@ config = dict(tokens=['первый токен',
                       'хоть 100'
                       ])
 ```
+
+
+h2 Запуск "python main.py"
