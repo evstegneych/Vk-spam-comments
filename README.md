@@ -1,4 +1,5 @@
 # Vk-spam-comments
+(Енто обычный спамер в коменты от имени групп)
 
 ***Зависимости "pip install requirements.txt"***
 (vk_api)
@@ -9,7 +10,7 @@
 
 **Добавление групп** (файл "config.py")
 ```
-config = dict(tokens=['первый токен',
+config = dict(tokens=['первый токен(группы)', 
                       'второй токен',
                       'третий',
                       'и так далее',
@@ -18,4 +19,4 @@ config = dict(tokens=['первый токен',
 ```
 
 
-h2 Запуск "python start.py"
+Запуск "python start.py"
