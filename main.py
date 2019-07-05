@@ -21,14 +21,14 @@ def core(name, api):
             Logger.Pulselog(f'Группа №{name} оставила коммент ({i})')
             i += 1
             time.sleep(1)
-        except Exception as s:
-            Logger.Rlog(f'Произошел сбой в {name}\n'
-                        f'{s.__class__} {s}')
-            time.sleep(60)
         except vk_api.exceptions.ApiError:
             Logger.Plog(f'Произошел сбой в {name}\n'
                         f'{s.__class__} {s}')
             break
+        except Exception as s:
+            Logger.Rlog(f'Произошел сбой в {name}\n'
+                        f'{s.__class__} {s}')
+            time.sleep(60)
     Logger.Rlog(f'Группа №{name} закончила свою работу')
 
 def main():
