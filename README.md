@@ -18,4 +18,4 @@ config = dict(tokens=['первый токен',
 ```
 
 
-h2 Запуск "python main.py"
+h2 Запуск "python start.py"
