@@ -9,7 +9,6 @@ if link is None:
     exit(0)
 else:
     post = link.group(0).replace('wall', '').replace('_', ' ').split()
-print(post)
 
 def core(name, api):
     global post
