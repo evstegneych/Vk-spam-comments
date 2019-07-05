@@ -1,6 +1,7 @@
 # Vk-spam-comments
 
 ***Зависимости "pip install requirements.txt"***
+(vk_api)
 
 >У групп должно быть минимут 100 подписчиков
 >
