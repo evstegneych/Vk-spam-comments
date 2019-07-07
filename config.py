@@ -1,4 +1,3 @@
-import main
 config = dict(tokens=['73acfdddcea471a9c9fc903f77004be659d73523f43636b64ee5f9158632a5bf644cbf8bd22ee8dd21170',
                       '8a07dc39036bc1d7d5e25a68406d7274ba17622e69fbd0f388acdb8bcc37baeeeb25ab76d17292ee0c3d6',
                       '',

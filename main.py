@@ -4,28 +4,30 @@ from config import config
 
 
 # https://vk.com/dean0n?w=wall242175861_1690
-url = input('Введите ссылку на пост!')
+Logger.Blog(">>> Cсылку на пост:")
+url = input('')
 link = re.search(r'wall\d+_\d+', url)
 if link is None:
-    Logger.Rlog('Ссылка инвалидная!')
+    Logger.Rlog('>>> Неправильная ссылка!')
     exit(0)
 else:
     post = link.group(0).replace('wall', '').replace('_', ' ').split()
 # &#4448;
-text = input('Ведите текст который хотите отправлять:')
+Logger.Blog(">>> Текст для отправки:")
+text = input('')
 
 def core(name, api):
     global post
     global text
-    Logger.Ylog(f'Группа №{name} запущена')
+    Logger.Glog(f'>>> Спамер запустил группу №{name}')
     i = 1
     while True:
         try:
             api.wall.createComment(owner_id=post[0], post_id=post[1],
                                    message=text)
-            Logger.Pulselog(f'Группа №{name} оставила коммент ({i})')
+            Logger.Pulselog(f'>>> Группа №{name} оставила коммент ({i})')
             i += 1
-            time.sleep(0.7)
+            time.sleep(0.2)
         except vk_api.exceptions.ApiError as s:
             Logger.Plog(f'Произошел сбой в {name} группе\n'
                         f'{s.__class__} {s}')
