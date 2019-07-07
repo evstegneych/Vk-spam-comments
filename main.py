@@ -8,8 +8,12 @@ Logger.Blog(">>> Cсылку на пост:")
 url = input('')
 link = re.search(r'wall\d+_\d+', url)
 if link is None:
-    Logger.Rlog('>>> Неправильная ссылка!')
-    exit(0)
+    link = re.search(r'wall-\d+_\d+', url)
+    if link is None:
+        Logger.Rlog('>>> Неправильная ссылка!')
+        exit(0)
+    else:
+        post = link.group(0).replace('wall', '').replace('_', ' ').split()
 else:
     post = link.group(0).replace('wall', '').replace('_', ' ').split()
 # &#4448;
