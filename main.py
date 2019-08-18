@@ -6,9 +6,9 @@ from config import config
 # https://vk.com/dean0n?w=wall242175861_1690
 Logger.Blog(">>> Cсылку на пост:")
 url = input('')
-link = re.search(r'wall\d+_\d+', url)
+link = re.search('wall\d+_\d+', url)
 if link is None:
-    link = re.search(r'wall-\d+_\d+', url)
+    link = re.search('wall-\d+_\d+', url)
     if link is None:
         Logger.Rlog('>>> Неправильная ссылка!')
         exit(0)
@@ -48,6 +48,7 @@ def main():
         vk_session = vk_api.VkApi(token=token)
         vk = vk_session.get_api()
         Thread(target=core, args=[x, vk]).start()
+
 
 if __name__ == '__main__':
     main()
