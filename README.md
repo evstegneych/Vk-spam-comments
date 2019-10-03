@@ -20,4 +20,5 @@ config = dict(tokens=['первый токен(группы)',
 ```
 
 
-Запуск "python start.py"
+Запуск "python start.py" или "python main.py"
+Как больше нравится
